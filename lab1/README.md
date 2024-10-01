@@ -112,7 +112,7 @@ start() ->
   io:format("~p", [Sum]).
 ```
 
-5. Генерация последовательности при помощи map
+5. Генерация последовательности при помощи встроенного map
 
 Генерация самих чисел Фибоначчи возьмем из модуля `task2_module`. Поиск четных чисел из списка
 реализован при помощи map, а удаление ненужных элементов делаем при помощи функции filter.
@@ -127,4 +127,36 @@ generate_fib_list_map() ->
 
 
 start() -> io:format("~p", [lists:foldl(fun(X, Y) -> X + Y end, 0, generate_fib_list_map())]).
+```
+
+6. Генерация последовательности с кастомным map (map_until)
+
+Встроенная функция map работает так, что мы проходимся по списку и применяем к каждому элементу списка
+переданную функцию, однако мы не можем остановить выполнение функции map, когда определенное условие
+не соблюдается, поэтому для генерации последовательности чисел Фибоначчи можно написать свою реализацию map
+```erlang
+-define(MAX_FIB_NUM, 4000000).
+
+map_until(_, [], _) -> [];
+map_until(Fun, [H | T], MaxValue) ->
+  Result = Fun(H),
+  if
+    Result > MaxValue -> [];
+    true -> [Result | map_until(Fun, T, MaxValue)]
+  end.
+
+
+fib(N) when N >= 0 ->
+  fib(N, 1, 1).
+
+fib(0, A, _) -> A;
+fib(N, A, B) ->
+  fib(N - 1, B, A + B).
+
+generate_fib_list_map() ->
+  List = lists:seq(0, 100),
+  FibList = map_until(fun fib/1, List, ?MAX_FIB_NUM),
+  lists:foldl(fun(X, Y) -> X + Y end, 0, lists:filter(fun(X) -> X rem 2 == 0 end, FibList)).
+
+start() ->io:format("~p", [ generate_fib_list_map()]).
 ```

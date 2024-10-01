@@ -1,0 +1,40 @@
+name: Erlang CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'lab1/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Erlang
+        uses: erlef/setup-beam@v1
+        with:
+            otp-version: '26.0'
+            rebar3-version: '3.20.0'
+
+      - name: Build App
+        run: |
+          rebar3 compile
+        working-directory: lab1
+
+      - name: Code formatting erlfmt test
+        run: |
+          rebar3 fmt --check
+
+      - name: Run dialyzer
+        run: |
+          rebar3 dialyzer
+        working-directory: lab1
+
+      - name: Run elvis
+        run: |
+          rebar3 lint
+        working-directory: lab1
