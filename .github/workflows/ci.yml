@@ -8,6 +8,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        folder: [lab1]
+
+    defaults:
+      run:
+        working-directory: ${{matrix.folder}}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,19 +29,15 @@ jobs:
       - name: Build App
         run: |
           rebar3 compile
-        working-directory: lab1
 
       - name: Code formatting erlfmt test
         run: |
           rebar3 fmt --check
-        working-directory: lab1
 
       - name: Run dialyzer
         run: |
           rebar3 dialyzer
-        working-directory: lab1
 
       - name: Run elvis
         run: |
           rebar3 lint
-        working-directory: lab1
