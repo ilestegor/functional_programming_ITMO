@@ -9,12 +9,9 @@
 -module(task2_module_bif).
 
 %% API
--export([start/0]).
--define(MAX_FIB_NUM, 4000000).
+-export([start/3]).
 
-%%with BIF and anon functions
-
-start() ->
-    FibList = task2_module:generate_fib(0, 1, ?MAX_FIB_NUM),
+start(K, Z, MaxFibNum) ->
+    FibList = task2_module:generate_fib(K, Z, MaxFibNum),
     EvenFibList = lists:filter(fun(X) -> X rem 2 == 0 end, FibList),
     lists:foldl(fun(X, Y) -> X + Y end, 0, EvenFibList).

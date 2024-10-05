@@ -10,11 +10,10 @@
 
 %% API
 
--export([start/0]).
--define(MAX_FIB_NUM, 4000000).
+-export([start/3]).
 
-generate_fib_list_map() ->
-    FibList = task2_module:generate_fib(0, 1, ?MAX_FIB_NUM),
+generate_fib_list_map(Z, K, MaxFibNum) ->
+    FibList = task2_module:generate_fib(Z, K, MaxFibNum),
     MappedList = lists:map(
         fun
             (X) when X rem 2 == 0 -> X;
@@ -24,5 +23,5 @@ generate_fib_list_map() ->
     ),
     lists:filter(fun(X) -> X /= false end, MappedList).
 
-start() ->
-    lists:foldl(fun(X, Y) -> X + Y end, 0, generate_fib_list_map()).
+start(Z, K, MaxFibNum) ->
+    lists:foldl(fun(X, Y) -> X + Y end, 0, generate_fib_list_map(Z, K, MaxFibNum)).

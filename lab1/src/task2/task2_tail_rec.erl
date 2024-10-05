@@ -9,18 +9,13 @@
 -module(task2_tail_rec).
 
 %% API
--export([fib_even_sum/2, solve/0]).
--define(MAX_FIB_NUM, 4000000).
+-export([fib_even_sum/3]).
 
-solve() when ?MAX_FIB_NUM >= 0 ->
-    fib_even_sum(0, 1).
-
-fib_even_sum(X, Y) when X >= 0, Y >= 1 ->
-    fib_even_sum(X, Y, 0).
-
-fib_even_sum(X, _Y, Acc) when X > ?MAX_FIB_NUM ->
+fib_even_sum(X, Y, MaxFibNum) when X >= 0, Y >= 1, MaxFibNum > 0 ->
+    fib_even_sum(X, Y, 0, MaxFibNum).
+fib_even_sum(X, _Y, Acc, MaxFibNum) when X > MaxFibNum ->
     Acc;
-fib_even_sum(X, Y, Acc) when X rem 2 == 0 ->
-    fib_even_sum(Y, X + Y, Acc + X);
-fib_even_sum(X, Y, Acc) ->
-    fib_even_sum(Y, X + Y, Acc).
+fib_even_sum(X, Y, Acc, MaxFibNum) when X rem 2 == 0 ->
+    fib_even_sum(Y, X + Y, Acc + X, MaxFibNum);
+fib_even_sum(X, Y, Acc, MaxFibNum) ->
+    fib_even_sum(Y, X + Y, Acc, MaxFibNum).

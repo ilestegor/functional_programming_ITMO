@@ -9,8 +9,7 @@
 -module(task2_map_until).
 
 %% API
--export([start/0]).
--define(MAX_FIB_NUM, 4000000).
+-export([generate_fib_list_map/3]).
 
 map_until(_, [], _) ->
     [];
@@ -27,13 +26,11 @@ fib(N) when N >= 0 ->
 fib(0, A, _) -> A;
 fib(N, A, B) -> fib(N - 1, B, A + B).
 
-generate_fib_list_map() ->
-    List = lists:seq(0, 100),
-    FibList = map_until(fun fib/1, List, ?MAX_FIB_NUM),
+generate_fib_list_map(Left, Right, MaxFibNum) ->
+    List = lists:seq(Left, Right),
+    FibList = map_until(fun fib/1, List, MaxFibNum),
     lists:foldl(
         fun(X, Y) -> X + Y end,
         0,
         lists:filter(fun(X) -> X rem 2 == 0 end, FibList)
     ).
-
-start() -> generate_fib_list_map().
