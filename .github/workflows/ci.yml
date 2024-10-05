@@ -69,5 +69,5 @@ jobs:
 
       - name: Run Eunit tests
         run: |
-          rebar3 eunit
+          rebar3 eunit -v
         
