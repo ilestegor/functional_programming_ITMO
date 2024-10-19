@@ -10,7 +10,6 @@
 -author("ilestegor").
 
 -include_lib("proper/include/proper.hrl").
--include_lib("eunit/include/eunit.hrl").
 -include("../src/hashmap_dict.hrl").
 
 prop_associativity_test() ->
