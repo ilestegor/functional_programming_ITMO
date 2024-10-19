@@ -69,12 +69,3 @@ foldl_test() ->
     NewDict = hashmap_dict:insert(hashmap_dict:insert(Dict, 1, 2), 3, 4),
     Result = hashmap_dict:foldl(NewDict, 0, fun(X, {_, V}) -> V + X end),
     ?_assertEqual(6, Result).
-
-
-
-
-
-
-
-
-

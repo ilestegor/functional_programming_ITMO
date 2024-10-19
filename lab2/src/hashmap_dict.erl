@@ -153,7 +153,9 @@ filter_seq(Pred, [H | T], Acc) ->
             filter_seq(Pred, T, Acc)
     end.
 
-map(Pred, #oahashdict{table = Table, capacity = Capacity, size = Size} = Dict) when Capacity > 0 ->
+map(Pred, #oahashdict{table = Table, capacity = Capacity, size = Size} = Dict) when
+    Capacity > 0
+->
     Dict#oahashdict{table = map_seq(Pred, Table), size = Size, capacity = Capacity}.
 
 map_seq(_, []) ->
