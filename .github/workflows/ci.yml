@@ -71,7 +71,7 @@ jobs:
         run: |
           rebar3 eunit -v
 
-      - name: Run Eunit tests
+      - name: Run Property-based tests
         working-directory: lab2
         run: |
           rebar3 proper

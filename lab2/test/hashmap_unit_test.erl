@@ -26,18 +26,18 @@ hashmap_test_() ->
 
 create_test() ->
     D = hashmap_dict:new(),
-    ?_assertEqual(0, D#oahashdict.size),
+    ?assertEqual(0, D#oahashdict.size),
     ?_assertEqual(10, D#oahashdict.capacity).
 
 create_with_capacity_test() ->
     D = hashmap_dict:new(50),
-    ?_assertEqual(50, D#oahashdict.capacity),
+    ?assertEqual(50, D#oahashdict.capacity),
     ?_assertEqual(0, D#oahashdict.size).
 
 resize_test() ->
     D = hashmap_dict:new(1),
     NewD = hashmap_dict:insert(hashmap_dict:insert(D, 1, 2), 3, 4),
-    ?_assertEqual(2, NewD#oahashdict.capacity),
+    ?assertEqual(2, NewD#oahashdict.capacity),
     ?_assertEqual(2, NewD#oahashdict.size).
 
 insert_update_value_test() ->
