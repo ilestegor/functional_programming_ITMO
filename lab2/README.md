@@ -192,6 +192,14 @@ map_seq(Pred, [H | T]) ->
 пустая структура с `capacity = 0` и `size = 0`. При слиянии двух непустых структур значения, у которых одинаковые ключи, будем
 складывать
 
+```erlang
+new(Capacity) ->
+   EmptyTable = lists:duplicate(Capacity, {none, none}),
+   #oahashdict{table = EmptyTable, size = 0, capacity = Capacity}.
+
+empty_map() -> new(0).
+```
+
 ### Тестирование
 Тестирование проводилось при помощи двух инструментов:
  - Eunit -- для Unit-тестирования
