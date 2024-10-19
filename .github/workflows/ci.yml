@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        folder: [lab1]
+        folder: [lab1, lab2]
 
     defaults:
       run:
