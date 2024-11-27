@@ -55,7 +55,10 @@ output_loop() ->
             print_result(Result),
             output_loop();
         {error, Method, Msg} ->
-            error_logger:error_msg("\e[31mError in method ~p -- ~p\e[0m~n", [Method, Msg]);
+            error_logger:error_msg(
+                "\e[31mError in method ~p -- ~p\e[0m~n",
+                [Method, Msg]
+            );
         {exit, ok} ->
             exit(ok);
         {ok, lagrange, Result} ->
