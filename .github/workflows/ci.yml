@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        folder: [lab1, lab2]
+        folder: [lab1, lab2, lab3/lab3_gen_server, lab3/lab3_proc]
 
     defaults:
       run:
@@ -47,7 +47,7 @@ jobs:
 
     strategy:
       matrix:
-        folder: [lab1, lab2]
+        folder: [lab1, lab2, lab3/lab3_gen_server, lab3/lab3_proc]
 
     defaults:
       run:

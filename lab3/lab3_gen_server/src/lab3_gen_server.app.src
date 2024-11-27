@@ -1,0 +1,23 @@
+{application, lab3_gen_server, [
+    {description, "An OTP application"},
+    {vsn, "0.1.0"},
+    {registered, [input_server, output_server, interpolation_server]},
+    {mod, {lab3_gen_server_app, []}},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {env, []},
+    {modules, [
+        lab3_gen_server_app,
+        lab3_gen_server_sup,
+        input_server,
+        output_server,
+        interpolation_server,
+        linear_server,
+        interpolation_sup,
+        lagrange_server
+    ]},
+    {licenses, ["Apache-2.0"]},
+    {links, []}
+]}.
