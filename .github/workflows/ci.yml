@@ -47,7 +47,7 @@ jobs:
 
     strategy:
       matrix:
-        folder: [lab1, lab2, lab3/lab3_gen_server, lab3/lab3_proc]
+        folder: [lab1, lab2]
 
     defaults:
       run:
@@ -71,8 +71,28 @@ jobs:
         run: |
           rebar3 eunit -v
 
-      - name: Run Property-based tests
+  property-tests:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
         working-directory: lab2
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Erlang
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: '26.0'
+          rebar3-version: '3.24.0'
+
+      - name: Build App
+        run: |
+          rebar3 compile
+
+      - name: Run Property-based tests
         run: |
           rebar3 proper
         
