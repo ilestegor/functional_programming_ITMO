@@ -43,14 +43,11 @@ lagrange_loop(Points, Step, Window, From) ->
             UpdatedPoints =
                 case length(Points) of
                     Window ->
-                        
                         tl(Points) ++ [Data];
                     _ ->
-                        
                         Points ++ [Data]
                 end,
 
-        
             case length(UpdatedPoints) of
                 Window ->
                     Sorted = lists:sort(fun([A, _], [B, _]) -> A =< B end, UpdatedPoints),
