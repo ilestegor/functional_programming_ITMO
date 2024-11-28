@@ -11,7 +11,6 @@
 start_lagrange(From, Step, Window) ->
     spawn(fun() -> lagrange_loop([], Step, Window, From) end).
 
-% Lagrange multiplier
 lagrange_multiplier(X, Xi, Points) ->
     lists:foldl(
         fun
@@ -23,8 +22,6 @@ lagrange_multiplier(X, Xi, Points) ->
         1,
         Points
     ).
-
-% Lagrange polynomial
 lagrange_polynomial(X, Points) ->
     lists:foldl(
         fun([Xi, Yi], Acc) ->
@@ -33,8 +30,6 @@ lagrange_polynomial(X, Points) ->
         0,
         Points
     ).
-
-% Evaluate Lagrange polynomial on generated dots
 evaluate_lagrange(Step, Points) ->
     [X1, _] = hd(Points),
     [X2, _] = lists:last(Points),
@@ -48,14 +43,14 @@ lagrange_loop(Points, Step, Window, From) ->
             UpdatedPoints =
                 case length(Points) of
                     Window ->
-                        % Remove the first point and add the new point
+                        
                         tl(Points) ++ [Data];
                     _ ->
-                        % Just add the new point
+                        
                         Points ++ [Data]
                 end,
 
-            % Perform interpolation only when UpdatedPoints matches Window size
+        
             case length(UpdatedPoints) of
                 Window ->
                     Sorted = lists:sort(fun([A, _], [B, _]) -> A =< B end, UpdatedPoints),

@@ -61,13 +61,11 @@ interpolation_loop(Procs, Config) ->
             case OldProc of
                 [{_, _, Method}] ->
                     erlang:demonitor(Ref, [flush]),
-                    %% Restart the process
                     NewPid = restart_process(Method, Config),
                     NewRef = erlang:monitor(process, NewPid),
                     NewProcs = [{NewPid, NewRef, Method} | RestProcs],
                     interpolation_loop(NewProcs, Config);
                 [] ->
-                    %% No matching process found
                     interpolation_loop(Procs, Config)
             end
     end.
