@@ -14,7 +14,9 @@
 
 start() ->
     {Freq, Window, Methods} = parse_config(),
-    io:fwrite("Booted with: freq - ~p, window - ~p, methods - ~p~n", [Freq, Window, Methods]),
+    io:fwrite("Booted with: freq - ~p, window - ~p, methods - ~p~n", [
+        Freq, Window, Methods
+    ]),
     start(normal, {Freq, Window, Methods}).
 
 start(_StartType, StartArgs) ->

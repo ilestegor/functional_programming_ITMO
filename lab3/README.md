@@ -212,7 +212,7 @@ Enter dots:
 
 - Точка входа в программу: [lab3_gen_server/src/lab3_gen_server_app.erl](lab3_gen_server/src/lab3_gen_server_app.erl)
 - Работа с вводом: [lab3_gen_server/src/input_server.erl](lab3_gen_server/src/input_server.erl)
--Работы с выводом: [lab3_gen_server/src/output_server.erl](lab3_gen_server/src/output_server.erl)
+- Работы с выводом: [lab3_gen_server/src/output_server.erl](lab3_gen_server/src/output_server.erl)
 - Менеджер интерполяции: [lab3_gen_server/src/interpolation_server.erl](lab3_gen_server/src/interpolation_server.erl)
 - Линейная интерполяция: [lab3_gen_server/src/linear_server.erl](lab3_gen_server/src/linear_server.erl)
 - Метод Лагранжа: [lab3_gen_server/src/lagrange_server.erl](lab3_gen_server/src/lagrange_server.erl)
@@ -227,7 +227,7 @@ Enter dots:
 
 либо
 
-через скрпт `run.sh`
+через скрипт `run.sh`
 
 Пример работы программы для ln(x)
 
